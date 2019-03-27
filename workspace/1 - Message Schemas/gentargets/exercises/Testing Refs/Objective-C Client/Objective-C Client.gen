@@ -1,0 +1,49 @@
+---
+name: "Objective-C Client"
+genTemplateId: "com.reprezen.genflow.openapi.generator.ObjcClientCodegen"
+relativeOutputDir: generated
+prerequisites: null
+primarySource: 
+  path: "../../../../exercises/Testing Refs.yaml"
+namedSources: null 
+# The parameters object contains variables that are processed directly by the GenTemplate.
+parameters: 
+  # Should generate core data models
+  coreData: null
+  
+  # prefix for generated classes (convention: Abbreviation of pod name e.g. `HN` for `HackerNews`).`
+  classPrefix: null
+  
+  # cocoapods package name (convention: CameCase).
+  podName: null
+  
+  # cocoapods package version.
+  podVersion: null
+  
+  # Name to use in the podspec file.
+  authorName: null
+  
+  # Email to use in the podspec file.
+  authorEmail: null
+  
+  # URL for the git repo where this podspec should point to.
+  gitRepoURL: null
+  
+  # Hides the generation timestamp when files are generated.
+  hideGenerationTimestamp: null
+  
+  # Contents of OpenAPI Generator configuration file.
+  # This is the file that would be passed with the --config option on the OpenAPI Generator
+  # command line. The JSON contents of that file should be the value of this parameter.
+  # This parameter need not be used. If it is absent, all string-valued parameters are collected into
+  # a map that is then passed to the OpenAPI Generator module. If a map is provided here, then
+  # string-valued parameters are still copied in, overriding like-named values appearing in the map.
+  openApiCodegenConfig: null
+  
+  # System properties to set, as in the -D option of OpenAPI Generator command line.
+  # Each property should be a JSON object with a name/value pair for each property.
+  # Example: for '-Dmodels -Dapis=User,Pets' use the following:
+  # value:
+  #   models: ''
+  #   apis: Users,Pets
+  openApiCodegenSystemProperties: null

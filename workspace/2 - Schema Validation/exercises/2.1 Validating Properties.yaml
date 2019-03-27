@@ -1,0 +1,67 @@
+# OpenAPI v3 Training Exercise
+
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: TaxBlaster API
+  description: |
+    # Exercise: Validating Properties
+    
+    This document contains a single object schema definition.
+    
+    Adjust the schema so that the first object instance is valid,
+    and the second one is not.
+    
+    ## Valid Instance       
+    ```
+    {
+      "accountID" : "ASDF1234",
+      "customerID" : "987-89-2345",
+      "branch" : "CLARKSVILLE_987"
+      "dateOpened" : "2017-04-10",
+      "balance" : "10782.53",
+      "isJointAccount" : false
+    }
+    ```
+    
+    ## Invalid Instance       
+    ```
+    {
+      "accountID" : "ASDF1234",
+      "customerID" : "987-89-2345",
+      "lastStatement" : "2019-03-16"
+      "branch" : "CLARKSVILLE_987"
+      "dateOpened" : "2017-04-10",
+      "balance" : "10782.53",
+      "isJointAccount" : false,
+      "overdraftLimit" : 15000
+    }
+    ```
+    
+paths: {}
+
+components:
+
+  schemas:
+
+    DepositAccount:
+      type: object
+      required:
+        - accountID
+        - customerID  
+      properties:
+        accountID:
+          type: string
+        customerID:
+          type: string
+        branch:
+          type: string
+        dateOpened:
+          type: string
+          format: date
+        currentBalance:
+          type: number
+          format: double
+        isJointAccount:
+          type: boolean
+         

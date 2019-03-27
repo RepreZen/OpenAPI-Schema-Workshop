@@ -1,0 +1,88 @@
+---
+name: "JavaScript Client"
+genTemplateId: "com.reprezen.genflow.openapi.generator.JavascriptClientCodegen"
+relativeOutputDir: generated
+prerequisites: null
+primarySource: 
+  path: "../../../../exercises/Testing Refs.yaml"
+namedSources: null 
+# The parameters object contains variables that are processed directly by the GenTemplate.
+parameters: 
+  # Sort method arguments to place required parameters before optional parameters.
+  sortParamsByRequiredFlag: null
+  
+  # Whether to ensure parameter names are unique in an operation (rename parameters that are not).
+  ensureUniqueParams: null
+  
+  # boolean, toggles whether unicode identifiers are allowed in names or not, default is false
+  allowUnicodeIdentifiers: null
+  
+  # Add form or body parameters to the beginning of the parameter list.
+  prependFormOrBodyParameters: null
+  
+  # source folder for generated code
+  sourceFolder: null
+  
+  # prefix for generated code members and local variables
+  localVariablePrefix: null
+  
+  # root package for generated code
+  invokerPackage: null
+  
+  # package for generated api classes
+  apiPackage: null
+  
+  # package for generated models
+  modelPackage: null
+  
+  # name of the project (Default: generated from info.title or "openapi-js-client")
+  projectName: null
+  
+  # module name for AMD, Node or globals (Default: generated from <projectName>)
+  moduleName: null
+  
+  # description of the project (Default: using info.description or "Client library of <projectName>")
+  projectDescription: null
+  
+  # version of the project (Default: using info.version or "1.0.0")
+  projectVersion: null
+  
+  # name of the license the project uses (Default: using info.license.name)
+  licenseName: null
+  
+  # use Promises as return values from the client API, instead of superagent callbacks
+  usePromises: null
+  
+  # generate getters and setters for model properties
+  emitModelMethods: null
+  
+  # generate JSDoc comments
+  emitJSDoc: null
+  
+  # use JavaScript prototype chains & delegation for inheritance
+  useInheritance: null
+  
+  # Hides the generation timestamp when files are generated.
+  hideGenerationTimestamp: null
+  
+  # use JavaScript ES6 (ECMAScript 6) (beta). Default is ES5.
+  useES6: null
+  
+  # Naming convention for the property: 'camelCase', 'PascalCase', 'snake_case' and 'original', which keeps the original name
+  modelPropertyNaming: null
+  
+  # Contents of OpenAPI Generator configuration file.
+  # This is the file that would be passed with the --config option on the OpenAPI Generator
+  # command line. The JSON contents of that file should be the value of this parameter.
+  # This parameter need not be used. If it is absent, all string-valued parameters are collected into
+  # a map that is then passed to the OpenAPI Generator module. If a map is provided here, then
+  # string-valued parameters are still copied in, overriding like-named values appearing in the map.
+  openApiCodegenConfig: null
+  
+  # System properties to set, as in the -D option of OpenAPI Generator command line.
+  # Each property should be a JSON object with a name/value pair for each property.
+  # Example: for '-Dmodels -Dapis=User,Pets' use the following:
+  # value:
+  #   models: ''
+  #   apis: Users,Pets
+  openApiCodegenSystemProperties: null

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.modelsolv.reprezen.generators</groupId>
+		<artifactId>5---body-parameters-and-schema-objects</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>..\..\..\..\pom.xml</relativePath>
+	</parent>
+	<artifactId>javascript-client</artifactId>
+	<name>GenTarget Launcher For JavaScript Client</name>
+	<packaging>pom</packaging>
+	<properties>
+		<project.lib.dir>C:/Users/tedep/workspacerzen/OpenAPI-Schema-Workshop/workspace/1 - Message Schemas/lib</project.lib.dir>
+		<shared.gentemplates.dir>C:\Users\tedep\workspacerzen\OpenAPI-Schema-Workshop\workspace/shared/GenTemplates</shared.gentemplates.dir>
+	</properties>
+	<build>
+		<defaultGoal>clean generate-sources</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>com.googlecode.addjars-maven-plugin</groupId>
+				<artifactId>addjars-maven-plugin</artifactId>
+				<version>1.0.5</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-jars</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${shared.gentemplates.dir}</directory>
+								</resource>
+								<resource>
+									<directory>${project.lib.dir}</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<includeProjectDependencies>true</includeProjectDependencies>
+					<mainClass>com.reprezen.genflow.api.util.GeneratorLauncher</mainClass>
+					<classpathScope>compile</classpathScope>
+					<cleanupDaemonThreads>false</cleanupDaemonThreads>
+					<arguments>
+						<argument>JavaScript Client</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+</build>
+</project>

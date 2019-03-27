@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	
+	dependencies {
+		compile group: 'com.reprezen.genflow', name: 'standard-gentemplates', version: '[1.2.0,2.0-alpha)'
+		compile group: 'io.swagger', name: 'swagger-codegen', version: '[2.4.0,3.0-alpha)'
+		compile group: 'org.openapitools', name: 'openapi-generator', version: '[3.3.4,4.0-alpha)'
+		compile fileTree(dir: 'C:\\Users\\tedep\\workspacerzen\\OpenAPI-Schema-Workshop\\workspace/shared/GenTemplates', include: ['*.jar'])
+		compile fileTree(dir: 'C:\\Users\\tedep\\workspacerzen\\OpenAPI-Schema-Workshop\\workspace\\1 - Message Schemas\\lib', include: ['*.jar'])
+	}
+	
+	task(execGenTarget, dependsOn: 'classes', type: JavaExec) {
+		main = 'com.reprezen.genflow.api.util.GeneratorLauncher'
+		classpath = sourceSets.main.runtimeClasspath
+		args 'C:\\Users\\tedep\\workspacerzen\\OpenAPI-Schema-Workshop\\workspace\\1 - Message Schemas\\gentargets\\exercises\\Testing Refs\\JavaScript Client\\JavaScript Client.gen'
+	}
+	
+	defaultTasks 'execGenTarget' 
