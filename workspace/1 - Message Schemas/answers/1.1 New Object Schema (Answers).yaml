@@ -1,9 +1,10 @@
 # OpenAPI v3 Training Exercise
+# © 2019 ModelSolv Inc. All rights reserved.
 
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: TaxBlaster API
+  title: RepreZen API Workshop Series
   description: |
     # Answers: New Object Schema
     

@@ -1,0 +1,122 @@
+# OpenAPI v3 Training Exercise
+# © 2019 ModelSolv Inc. All rights reserved.
+
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: RepreZen API Workshop Series
+  description: |
+    # Exercise: Tolerant Reader and Strict Writer
+    The Tolerant Reader pattern implements allows inbound messages
+    to contain unrecognized properties, as long as the required 
+    property values are present. 
+    
+    The Strict Writer pattern is the counterpart to Tolerant
+    Reader, implementing strict validation of outbound messages.
+    
+    
+    In an API contract and its corresponding service implementation, 
+    this means that _requests_ will allow unrecognized properties, 
+    while _responses_ are strict, disallowing any unrecognized
+    properties.
+    
+    The API contained in this file has a Patch operation on the  
+    `/TaxFilings/{id}` resource. Modify this API so that it
+    implements a tolerant reader and a strict writer.
+
+paths:
+
+  /TaxFilings/{id}:
+    parameters:
+    - description: ID of the individual tax filing.
+      name: id
+      in: path
+      schema:
+        type: string
+      required: true
+    get:
+      description: Retrieve an individual tax filing.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaxFiling"
+        default:
+          description: >
+            Unexpected error in processing the request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    patch:
+      summary: Partial update
+      description: Update Taxpayer object 
+      requestBody:
+        description: |
+          Sparsely populated Taxpayer object. Included property
+          values will be used to update the Taxpayer record. 
+        content: 
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/TaxFiling"  
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StrictTaxFiling"
+
+components:
+  schemas:
+
+    StrictTaxFiling:
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/TaxFiling"
+      properties:
+        filingID: {}
+        taxpayerID: {}
+        jurisdiction: {}
+        fileDate: {}
+        isJointFiling: {}
+        filingStatus: {}
+      additionalProperties: false
+      
+    TaxFiling:
+      type: object
+      required:
+        - filingID  
+      properties:
+        filingID:
+          type: string
+        taxpayerID:
+          type: string
+        jurisdiction:
+          type: string
+        fileDate:
+          type: string
+          format: date
+        isJointFiling:
+          type: boolean
+        filingStatus:
+          $ref: "#/components/schemas/TaxFilingStatus"
+    
+    TaxFilingStatus:
+      type: string
+      enum:
+      - Draft
+      - Submitted
+      - Accepted
+      - Audit_Pending
+
+    ErrorResponse:
+      description: An error string returned from a bad response.
+      type: object
+      properties:
+        errorMessage:
+          type: string
+        stackTrace:
+          type: string

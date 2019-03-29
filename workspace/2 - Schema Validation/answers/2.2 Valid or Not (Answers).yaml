@@ -1,0 +1,173 @@
+# OpenAPI v3 Training Exercise
+# © 2019 ModelSolv Inc. All rights reserved.
+
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: RepreZen API Workshop Series
+  description: |-
+    # Exercise: Validating Properties
+    
+    Look at each schema and enter "valid" or "not" 
+    on each of the provided JSON instances:
+    
+    ## Schema 1
+    
+    ```
+    ---
+    type: object
+    properties:
+      songTitle:
+        type: string
+      artist:
+        type: string
+      genre: 
+        type: string
+        enum:
+        - pop
+        - jazz
+        - classical
+        - EDM
+        - indie
+      playsLogged:
+        type: number
+        format: integer
+    required:
+    - songTitle
+    - artist
+    ```
+    
+    ### Instance 1a
+   
+    ```
+    {
+      "songTitle": "Black Star",
+      "artist": "Radiohead",
+      "playsLogged": 2348
+    }
+    ```
+    
+    Is it valid or not?  valid
+         
+    ### Instance 1b
+   
+    ```
+    {
+      "songTitle": "Black Star",
+      "artist": "Radiohead",
+      "genre": "alternative",
+      "rank": 7789,
+      "released": "1995-03-13",
+      "playsLogged": 2348
+    }
+    ```
+    
+    Is it valid or not?  not valid
+    
+    (The genre enum constraint doesn't allow 'alternative'.)
+    
+         
+    ### Instance 1c
+   
+    ```
+    [
+      {
+        "songTitle": "Black Star",
+        "artist": "Radiohead",
+        "genre": "indie",
+        "playsLogged": 2348
+      },
+      {
+        "songTitle": "Midnight Train",
+        "artist": "Buddy Guy, Johnny Lang",
+        "genre": "jazz",
+        "playsLogged": 778
+      }
+    ]
+    ```
+    
+    Is it valid or not?  not valid.
+    
+    (Must be an object, not an array.)
+         
+    ## Schema 2
+    
+    ```
+    ---
+    properties:
+      route:
+        type: string
+      station:
+        type: string
+      dayOfWeek: 
+        type: number
+      stopsAtStation:
+        type: array
+        items:
+          type: object
+          properties:
+            arrivalTime: 
+              type: string
+            departureTime: 
+              type: string
+    maxLength: 5
+    minimum: 5 
+    ```
+    
+    ### Instance 2a
+   
+    ```
+    {
+      "route": "Hudson Line",
+      "station": "Tarrytown",
+      "dayOfWeek": 4,
+      "stopsAtStation": [
+        {
+          "arrivalTime": "7:02 AM",
+          "departureTime": "7:04 AM"
+        },
+        {
+          "arrivalTime": "9:30 AM",
+          "departureTime": "9:33 AM"
+        },
+        {
+          "arrivalTime": "4:23 PM",
+          "departureTime": "4:25 PM"
+        }
+      ]
+    }
+    ```
+    
+    Is it valid or not?  valid
+         
+    ### Instance 2b
+   
+    ```
+    [
+      4,
+      false,
+      {
+        "To": "Thomas",
+        "From": "Juanita",
+        "Subject": "Plans for Tongith",
+        "Body": "Hi Tom, \n\nLet's meet at the library at 8:30 to finish the \nstudying for tomorrow's exam. \n\nSee you there!\n\nJuanita\n"
+      }
+    ]
+    ```
+    
+    Is it valid or not?  valid
+    
+    (No type constraint. Array is allowed, and unconstrained.)
+         
+    ### Instance 2c
+   
+    ```
+    1.638
+    ```
+    
+    Is it valid or not?  not valid.
+    
+    (The `minimum: 5` constraint applies to numeric values.)
+
+paths: {}
+

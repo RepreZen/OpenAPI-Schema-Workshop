@@ -13,7 +13,7 @@ info:
     Adjust the schema so that the first object instance is valid,
     and the second one is not.
     
-    ## Valid Instance       
+    ## Valid Instance
     ```
     {
       "accountID" : "ASDF1234",
@@ -25,7 +25,7 @@ info:
     }
     ```
     
-    ## Invalid Instance       
+    ## Invalid Instance      
     ```
     {
       "accountID" : "ASDF1234",
@@ -73,3 +73,4 @@ components:
             `true` if the account has more than one owner,
             otherwise `false`. 
           type: boolean
+      additionalProperties: false

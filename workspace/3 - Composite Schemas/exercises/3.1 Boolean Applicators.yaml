@@ -1,9 +1,10 @@
 # OpenAPI v3 Training Exercise
+# © 2019 ModelSolv Inc. All rights reserved.
 
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: TaxBlaster API
+  title: RepreZen API Workshop Series
   description: |
     # Exercise: Boolean Assertions
     
@@ -30,7 +31,7 @@ info:
        
     2. Create a new schema component called `AmendedTaxFiling`
        that is _both_ a `TaxFiling` and an `Amendment`. 
-           
+
 paths:
 
   /tax_payment/{id}:
@@ -185,11 +186,6 @@ components:
           type: string
         changeSummary:
           type: string 
-          
-    AmendedTaxFiling:
-      allOf:
-      - $ref: "#/components/schemas/TaxFiling"
-      - $ref: "#/components/schemas/Amendment"
         
     TaxFilingStatus:
       type: string
@@ -218,9 +214,7 @@ components:
         maritalStatus:
           type: boolean
         taxDue:
-          oneOf:
-          - type: number
-          - $ref: "#/components/schemas/MissingValue"
+          type: number
   
     MissingValue:
       description:

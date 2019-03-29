@@ -1,9 +1,10 @@
 # OpenAPI v3 Training Exercise
+# © 2019 ModelSolv Inc. All rights reserved.
 
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: TaxBlaster API
+  title: RepreZen API Workshop Series
   
   description: |
     # Exercise: New Object Schema
@@ -47,6 +48,11 @@ paths:
                 type: object
 
   /taxpayers:
+    x-oas-draft-alternate-schema: >
+      type: xml-schema
+      schema:
+        <hello-world some-attr="Hi" />
+        <hello-world some-attr="isn't this great" />
     get:
       description: Retrieve the entire list of taxpayers.
       parameters:
@@ -69,7 +75,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ErrorResponse"
+                allOf:
+                - $ref: "#/components/schemas/Taxpayer"
+                - $ref: "../../2%20-%20Schema%20Validation/exercises/2.1%20Validating%20Properties.yaml#/components/schemas/DepositAccount" 
 
   /taxpayers/{id}:
     parameters:
